@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead'),
+	'local' => array('manuel.local'),
 
 ));
 
@@ -58,6 +58,20 @@ $framework = $app['path.base'].
                  '/vendor/laravel/framework/src';
 
 require $framework.'/Illuminate/Foundation/start.php';
+
+
+// Boot stapler:
+\Codesleeve\Stapler\Stapler::boot();
+
+// Set the configuration driver (we're using the default config driver here; if you choose to implement your own you'll need to implement Codesleeve\Stapler\Config\ConfigurableInterface):
+$config = new \Codesleeve\Stapler\Config\NativeConfig;
+\Codesleeve\Stapler\Stapler::setConfigInstance($config);
+
+// Set the location to your application's document root:
+$config->set('stapler.public_path', public_path());
+
+// Set the location to your application's base folder.
+$config->set('stapler.base_path', base_path());
 
 /*
 |--------------------------------------------------------------------------

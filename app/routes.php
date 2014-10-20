@@ -11,7 +11,11 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+Route::get('/', 'SessionsController@login');
+Route::get('/login', array('uses' => 'SessionsController@login', 'as' => 'login'));
+Route::get('/logout', array('uses' => 'SessionsController@logout', 'as' => 'logout'));
+Route::post('/authenticate', array('uses' => 'SessionsController@authenticate', 'as' => 'authenticate'));
+
+Route::group(array('before' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Dashboard'), function(){
+    Route::resource('photos','PhotosController');
 });

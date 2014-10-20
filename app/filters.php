@@ -43,6 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
+			Session::flash('alert_danger', 'Por favor inicia sesión');
 			return Redirect::guest('login');
 		}
 	}
