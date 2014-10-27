@@ -14,6 +14,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Orden</th>
                             <th>Nombre</th>
                             <th></th>
                         </tr>
@@ -21,6 +22,7 @@
                     <tbody>
                         @foreach ($categories as $category) 
                             <tr>
+                                <td>{{ $category->order }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <a href="{{ route('dashboard.categories.edit', array('id' => $category->id)) }}">

@@ -9,7 +9,7 @@ class CategoriesController extends \BaseController {
      */
     public function index()
     {
-        $categories = \Category::paginate(20);
+        $categories = \Category::orderBy('order')->paginate(20);
 
         return \View::make('dashboard.categories.index', compact('categories'));
     }

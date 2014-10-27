@@ -3,6 +3,11 @@
     {{ Form::text('name', null, array('class' => 'form-control')) }}
 </div>
 
+<div class="form-group">
+    <label>Order</label>
+    {{ Form::number('order', null, array('class' => 'form-control')) }}
+</div>
+
 <div class="form-actions text-right">    
     {{ Form::submit('Continuar', array('class' => 'btn btn-primary')) }}
 </div>

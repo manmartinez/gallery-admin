@@ -3,7 +3,7 @@
 class CategoriesController extends \BaseController {
 
     public function index() {
-        $categories = \Category::orderBy('name')->get();
+        $categories = \Category::orderBy('order')->get();
         return \Response::json($categories);
     }
 
