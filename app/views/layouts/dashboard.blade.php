@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>    
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="{{ asset('javascripts/vendor/laravel-ujs.js') }}"></script>
+        @yield('javascripts')
     </head>
     <body>
         <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
@@ -22,6 +24,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             {{ link_to_route('dashboard.photos.index', 'Fotos') }}
+                        </li>
+                        <li>
+                            {{ link_to_route('dashboard.categories.index','Categorías') }}
+                        </li>
+                        <li>
+                            {{ link_to_route('dashboard.subcategories.index','Subcategorías') }}
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

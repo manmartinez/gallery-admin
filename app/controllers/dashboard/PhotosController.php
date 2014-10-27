@@ -22,7 +22,8 @@ class PhotosController extends \BaseController {
     public function create()
     {
         $photo = new \Photo();
-        return \View::make('dashboard.photos.create', compact('photo'));
+        $categories = \Category::with('subcategories')->orderBy('name')->get();
+        return \View::make('dashboard.photos.create', compact('photo','categories'));
     }
 
 
@@ -65,7 +66,9 @@ class PhotosController extends \BaseController {
      */
     public function edit($id)
     {
-        //
+        $photo = \Photo::findOrFail($id);
+        $categories = \Category::with('subcategories')->orderBy('name')->get();
+        return \View::make('dashboard.photos.edit', compact('photo','categories'));
     }
 
 
@@ -77,7 +80,14 @@ class PhotosController extends \BaseController {
      */
     public function update($id)
     {
-        //
+        $photo = \Photo::findOrFail($id);
+        if( $photo->update(\Input::all()) ) {
+            \Session::flash('alert_success','La foto se ha actualizado');
+            return \Redirect::route('dashboard.photos.index');
+        }
+        else {
+            return \Redirect::route('dashboard.photos.edit', $photo->id)->withErrors($photo)->withInput();
+        }
     }
 
 
@@ -89,6 +99,9 @@ class PhotosController extends \BaseController {
      */
     public function destroy($id)
     {
-        //
+        $photo = \Photo::findOrFail($id);
+        $photo->delete();
+        \Session::flash('alert_success','La foto se ha eliminado');
+        return \Redirect::route('dashboard.photos.index');
     }
 }

@@ -16,17 +16,24 @@ class Photo extends Eloquent implements StaplerableInterface {
 
     protected $guarded = array('id', 'created_at', 'updated_at');
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = array('password', 'remember_token');
-
     public function __construct(array $attributes = array()) {
         $this->hasAttachedFile('photo');
 
 
         parent::__construct($attributes);
+    }
+
+    public function category() {
+        return $this->belongsTo('Category');
+    }
+
+    public function subcategory() {
+        return $this->belongsTo('Subcategory');
+    }
+
+    public function toArray() {
+        $array = parent::toArray();
+        $array['photo_url'] = $this->photo->url();
+        return $array;
     }
 }

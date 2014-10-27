@@ -18,4 +18,11 @@ Route::post('/authenticate', array('uses' => 'SessionsController@authenticate', 
 
 Route::group(array('before' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Dashboard'), function(){
     Route::resource('photos','PhotosController');
+    Route::resource('categories','CategoriesController');
+    Route::resource('subcategories','SubcategoriesController');
+});
+
+
+Route::group(array('prefix' => 'api', 'namespace' => 'Api'), function(){
+    Route::resource('categories','CategoriesController', array('only' => array('show','index')));
 });
