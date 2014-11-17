@@ -18,9 +18,11 @@
             $.each(subcategories, function(index, subcategory){
                 html += '<option value="' + subcategory.id + '">' + subcategory.name + '</option>';
             });    
+            $subcategorySelect.prop('disabled', false);
         }
         else {
             html = '<option>Sin subcategoría</option>';
+            $subcategorySelect.prop('disabled', true);
         }
         $subcategorySelect.html(html);
     }
